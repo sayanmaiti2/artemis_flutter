@@ -17,7 +17,12 @@ class HomeScreen extends StatelessWidget {
             IconButton(
               icon: FaIcon(FontAwesomeIcons.hSquare),
               iconSize: 36.0,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
             ),
             IconButton(
               icon: FaIcon(FontAwesomeIcons.fileMedical),
@@ -91,7 +96,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           VaccineCard('Hepatitis', 'Tomorrow', 'Janice', 'Fortis Hospital'),
-          VaccineCard('Mumps', 'Next Week', 'Robert', 'Apollo Hospital')
+          VaccineCard('Mumps', 'Next Week', 'Robert', 'Apollo Hospital'),
         ],
       ),
     );
