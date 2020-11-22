@@ -2,7 +2,6 @@ import 'package:artemis_flutter/screens/family_screen.dart';
 import 'package:artemis_flutter/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:artemis_flutter/widgets/date_picker.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -13,6 +12,7 @@ class _State extends State<RegistrationScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool checkBoxValue = false;
+  DateTime newMemberDOB;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,36 @@ class _State extends State<RegistrationScreen> {
                       SizedBox(
                         width: 25,
                       ),
-                      DatePicker(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            newMemberDOB == null
+                                ? 'Pick a Date'
+                                : newMemberDOB.toString().split(' ')[0],
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          RaisedButton(
+                            child: Text('Select'),
+                            onPressed: () {
+                              showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime.now(),
+                              ).then((newDate) {
+                                setState(() {
+                                  newMemberDOB = newDate;
+                                });
+                              });
+                            },
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -137,27 +166,33 @@ class _State extends State<RegistrationScreen> {
                   children: <Widget>[],
                 ),
               ),
-              ButtonTheme(
-                minWidth: 50,
-                height: 50,
-                child: RaisedButton(
-                  textColor: Colors.white,
-                  color: Color(0xfff85f6a),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+              Align(
+                alignment: Alignment.center,
+                child: ButtonTheme(
+                  minWidth: 150,
+                  height: 50,
+                  child: RaisedButton(
+                    textColor: Colors.white,
+                    color: Color(0xff71c9ce),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      'Register',
+                      style: GoogleFonts.quicksand(
+                          textStyle: TextStyle(color: Colors.white),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    onPressed: () {
+                      print(nameController.text);
+                      print(passwordController.text);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FamilyScreen()),
+                      );
+                    },
                   ),
-                  child: Text(
-                    'Register',
-                    style: GoogleFonts.merriweather(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    print(nameController.text);
-                    print(passwordController.text);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => FamilyScreen()),
-                    );
-                  },
                 ),
               ),
               SizedBox(

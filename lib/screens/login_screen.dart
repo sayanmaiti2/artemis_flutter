@@ -85,21 +85,22 @@ class _State extends State<LoginScreen> {
               SizedBox(
                 height: 25,
               ),
-              ButtonTheme(
-                minWidth: 80,
-                height: 50,
-                child: RaisedButton(
+              Align(
+                alignment: Alignment.center,
+                child: MaterialButton(
+                  height: 45,
+                  minWidth: 150,
                   textColor: Colors.white,
-                  color: Color(0xfff85f6a),
+                  color: Color(0xff71c9ce),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
                     'Login',
-                    style: GoogleFonts.merriweather(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
+                    style: GoogleFonts.quicksand(
+                        textStyle: TextStyle(color: Colors.white),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
                   ),
                   onPressed: () {
                     print(nameController.text);

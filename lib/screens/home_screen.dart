@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:artemis_flutter/widgets/vaccine_card.dart';
 import 'package:artemis_flutter/screens/family_screen.dart';
 import 'package:artemis_flutter/constants.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -15,50 +15,42 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.hSquare),
-                iconSize: 36.0,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
-                },
-              ),
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.fileMedical),
-                iconSize: 36.0,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => FamilyScreen()),
-                  );
-                },
-              ),
-              Ink(
-                decoration: ShapeDecoration(
-                    shape: CircleBorder(), color: Color(0xff71c9ce)),
-                child: IconButton(
-                  icon: Icon(Icons.add),
-                  iconSize: 46.0,
-                  color: Colors.white,
-                  onPressed: () {},
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                  icon: Icon(EvaIcons.homeOutline),
+                  iconSize: 36.0,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                  },
                 ),
-              ),
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.stethoscope),
-                iconSize: 36.0,
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: FaIcon(FontAwesomeIcons.envelopeOpen),
-                iconSize: 36.0,
-                onPressed: () {},
-              ),
-            ],
+                Ink(
+                  decoration: ShapeDecoration(
+                      shape: CircleBorder(), color: Color(0xff71c9ce)),
+                  child: IconButton(
+                    icon: Icon(Icons.add),
+                    iconSize: 36.0,
+                    color: Colors.white,
+                    onPressed: () {},
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(EvaIcons.personOutline),
+                  iconSize: 36.0,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FamilyScreen()),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
         body: Column(
@@ -110,7 +102,13 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
-            Expanded(
+            Container(
+              margin: EdgeInsets.only(left: 6, right: 6),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              height: MediaQuery.of(context).copyWith().size.height * 0.63,
               child: ListView(
                 children: [
                   VaccineCard(

@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FamilyTile extends StatelessWidget {
-  const FamilyTile({
-    Key key,
-  }) : super(key: key);
+  final String name;
+  FamilyTile({this.name});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.all(15),
       title: Text(
-        "Alice",
+        name,
         style: GoogleFonts.lato(
             textStyle: TextStyle(color: Colors.white, fontSize: 22)),
       ),
