@@ -1,3 +1,4 @@
+import 'package:artemis_flutter/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,11 +8,33 @@ import 'package:artemis_flutter/constants.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: kGradient,
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            'Artemis',
+            style: GoogleFonts.quicksand(
+              fontSize: 36,
+              fontWeight: FontWeight.w500,
+              color: Color(0xfffafafa),
+            ),
+          ),
+          elevation: 0,
+          actions: [
+            FlatButton.icon(
+                onPressed: () async {
+                  await _auth.signOut();
+                },
+                icon: Icon(Icons.logout),
+                label: Text(''))
+          ],
+        ),
         backgroundColor: Colors.transparent,
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 20),
@@ -56,24 +79,13 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: EdgeInsets.only(top: 50, bottom: 10),
-              child: Center(
-                child: Text(
-                  'Artemis',
-                  style: GoogleFonts.quicksand(
-                    fontSize: 36,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xfffafafa),
-                  ),
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Row(
                 children: [
-                  CircleAvatar(),
+                  CircleAvatar(
+                    child: Icon(Icons.add_to_photos_sharp),
+                  ),
                   SizedBox(
                     width: 10.0,
                   ),
